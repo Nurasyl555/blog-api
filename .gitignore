@@ -6,3 +6,5 @@ settings/.env
 media/
 .DS_Store
 logs/*.log
+*.log
+*.mo

@@ -1,5 +1,7 @@
 from rest_framework import serializers
+from django.utils.translation import gettext_lazy as _
 from apps.users.models import User
+from apps.users.validators import validate_language, validate_timezone
 
 class UserSerializer(serializers.ModelSerializer):
     """
@@ -20,17 +22,26 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'password', 'password_confirm']
+        fields = ['email', 'first_name', 'last_name', 'password', 'password_confirm', 'language']
 
     def validate(self, attrs):
         """
         checking password
         """
         if attrs['password'] != attrs['password_confirm']:
-            raise serializers.ValidationError("the passwords don't match")
+            raise serializers.ValidationError({
+                'password': _("the passwords don't match")
+            })
         return attrs
     
     def create(self, validated_data):
         validated_data.pop('password_confirm') # drop 
         user = User.objects.create_user(**validated_data)
         return user
+    
+class TimezoneSerializer(serializers.Serializer):
+    """Serializer for change timezone"""
+    timezone = serializers.CharField(validators=[validate_timezone])
+
+class LanguageSerializer(serializers.Serializer):
+    language = serializers.CharField(validators = [validate_language])

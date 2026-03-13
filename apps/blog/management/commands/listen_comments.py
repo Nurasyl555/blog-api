@@ -1,51 +1,77 @@
 import json
-import redis
+import asyncio
 from django.core.management.base import BaseCommand
 from django.conf import settings
+import redis.asyncio as aioredis
+
 
 class Command(BaseCommand):
-    help = 'Listens to the Redis comments channel and prints messages to the console'
-
+    help = 'Listens to the Redis comments channel and prints messages to the console (async version)'
+    
     def handle(self, *args, **options):
-        # connect to Redis
-        redis_client = redis.Redis(
-            host=settings.REDIS_HOST,
-            port=settings.REDIS_PORT,
-            db = settings.REDIS_DB,
-            decode_responses= True
-        )
-
-        #create pubsub object
-        pubsub = redis_client.pubsub()
-
-        #subscribe to the channel
-        pubsub.subscribe('comment')
-
-        self.stdout.write(
-            self.style.SUCCESS('✓ Подписались на канал comments. Ожидаем сообщения...')
+        
+        # Run the async function in the event loop
+        asyncio.run(self.listen_to_comments())
+    
+    async def listen_to_comments(self):
+        """Async function for listening to the comments channel"""
+        
+        # Create an async Redis client
+        redis_client = await aioredis.from_url(
+            settings.REDIS_URL if hasattr(settings, 'REDIS_URL') 
+            else f'redis://{settings.REDIS_HOST}:{settings.REDIS_PORT}/{settings.REDIS_DB}',
+            decode_responses=True
         )
         
-       # Infinite loop - listening to messages
         try:
-            for message in pubsub.listen():
+            # Create a pubsub object
+            pubsub = redis_client.pubsub()
+            
+            # Subscribe to the channel
+            await pubsub.subscribe('comments')
+            
+            self.stdout.write(
+                self.style.SUCCESS('✓ Subscribed to the comments channel (async). Waiting for messages...')
+            )
+            
+            # Infinite loop - listening to messages
+            async for message in pubsub.listen():
                 if message['type'] == 'message':
                     # Парсим JSON
-                    data = json.loads(message['data'])
+                    try:
+                        data = json.loads(message['data'])
+                        
+                        # Beautifully displayed
+                        self.stdout.write(
+                            self.style.SUCCESS(f'\n━━━ Новый комментарий ━━━')
+                        )
+                        self.stdout.write(f"  📝 post slug: {data.get('post_slug', 'N/A')}")
+                        self.stdout.write(f"  👤 Author ID: {data.get('author_id', 'N/A')}")
+                        self.stdout.write(f"  💬 Text: {data.get('body', 'N/A')}")
+                        self.stdout.write(f"  🕐 Time: {data.get('created_at', 'N/A')}")
+                        self.stdout.write(
+                            self.style.SUCCESS('━━━━━━━━━━━━━━━━━━━━━━━━━\n')
+                        )
                     
-                    # Beautifully displayed
-                    self.stdout.write(
-                        self.style.SUCCESS(f'\n━━━ new comment ━━━')
-                    )
-                    self.stdout.write(f"  📝 Пост: {data['post_title']}")
-                    self.stdout.write(f"  👤 Автор: {data['author_email']}")
-                    self.stdout.write(f"  💬 Текст: {data['body']}")
-                    self.stdout.write(f"  🕐 Время: {data['created_at']}")
-                    self.stdout.write(
-                        self.style.SUCCESS('━━━━━━━━━━━━━━━━━━━━━━━━━\n')
-                    )
+                    except json.JSONDecodeError as e:
+                        self.stdout.write(
+                            self.style.ERROR(f'Ошибка парсинга JSON: {e}')
+                        )
         
-        except KeyboardInterrupt:
+        except asyncio.CancelledError:
             self.stdout.write(
-                self.style.WARNING('\n✗ Отписались от канала comments')
+                self.style.WARNING('\n✗ Received stop signal')
             )
-            pubsub.unsubscribe('comments')
+        
+        except Exception as e:
+            self.stdout.write(
+                self.style.ERROR(f'Error: {e}')
+            )
+        
+        finally:
+            # Отписываемся и закрываем соединение
+            await pubsub.unsubscribe('comments')
+            await redis_client.close()
+            self.stdout.write(
+                self.style.WARNING('✗ Unsubscribed from the comments channel')
+            )

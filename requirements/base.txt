@@ -6,3 +6,6 @@ Pillow==10.0.0
 django-redis==5.4.0
 redis==5.0.1
 django-ratelimit==4.1.0
+pytz==2025.2
+drf-spectacular==0.28.0
+httpx==0.28.0

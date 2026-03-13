@@ -1,0 +1,14 @@
+{% load i18n %}
+{% trans "Hello" %}, {{ user.first_name}}
+
+{% trans "Thank you for registration in Blog API"%}
+
+{% trans "Now you can:" %}
+- {% trans "Create posts "%}
+- {% trans "leave comments"}
+- {% trans "follow interesting authors"%}
+
+{% trans "Enjoy using it" %}
+
+{% trans "Sincerely" %}
+{% trans "Blog API"%}

@@ -1,7 +1,14 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.db import models
 from django.utils import timezone
-# Create your models here.
+import pytz
+
+
+LANGUAGE_CHOICES = [
+    ('en', 'English'),
+    ('ru', 'Русский'),
+    ('kk', 'Қазақша')
+]
 
 class UserManager(BaseUserManager):
     """
@@ -35,6 +42,18 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
     avatar = models.ImageField(upload_to='avatar/', blank=True, null=True)
+
+    language = models.CharField(
+        max_length=5, 
+        choices=LANGUAGE_CHOICES, 
+        default='en', 
+        help_text='preferred language of users'
+    )
+    timezone = models.CharField(
+        max_length=50,
+        default='UTC',
+        help_text="Timezone for user(IANA timezone)"
+    )
 
     objects = UserManager()
 
