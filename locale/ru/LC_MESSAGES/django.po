@@ -1,0 +1,194 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-13 15:43+0000\n"
+"PO-Revision-Date: 2026-03-13 12:15+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: apps/blog/models.py:10 apps/blog/models.py:69 apps/blog/models.py:94
+msgid "slug"
+msgstr "слаг"
+
+#: apps/blog/models.py:13 apps/blog/models.py:46 apps/blog/models.py:102
+msgid "Category"
+msgstr "Категория"
+
+#: apps/blog/models.py:14
+msgid "Categories"
+msgstr "Категории"
+
+#: apps/blog/models.py:51
+msgid "Language"
+msgstr "Язык"
+
+#: apps/blog/models.py:53
+msgid "Name"
+msgstr "Название"
+
+#: apps/blog/models.py:57
+msgid "Translate category"
+msgstr "Перевод категории"
+
+#: apps/blog/models.py:58
+msgid "Translate categories"
+msgstr "Перевод категорий"
+
+#: apps/blog/models.py:68
+msgid "name"
+msgstr "название"
+
+#: apps/blog/models.py:72
+msgid "Tag"
+msgstr "Тег"
+
+#: apps/blog/models.py:73 apps/blog/models.py:104
+msgid "Tags"
+msgstr "Теги"
+
+#: apps/blog/models.py:84
+msgid "draft"
+msgstr "черновик"
+
+#: apps/blog/models.py:85
+msgid "published"
+msgstr "опубликовано"
+
+#: apps/blog/models.py:91
+msgid "author"
+msgstr "автор"
+
+#: apps/blog/models.py:93
+msgid "title"
+msgstr "заголовок"
+
+#: apps/blog/models.py:95
+msgid "content"
+msgstr "содержимое"
+
+#: apps/blog/models.py:109
+msgid "Status"
+msgstr "Статус"
+
+#: apps/blog/models.py:111 apps/blog/models.py:137
+msgid "Created"
+msgstr "Создано"
+
+#: apps/blog/models.py:112
+msgid "Updated"
+msgstr "Обновлено"
+
+#: apps/blog/models.py:116 apps/blog/models.py:128
+msgid "Post"
+msgstr "Пост"
+
+#: apps/blog/models.py:117
+msgid "Posts"
+msgstr "Посты"
+
+#: apps/blog/models.py:134
+msgid "Author"
+msgstr "Автор"
+
+#: apps/blog/models.py:136
+msgid "Text"
+msgstr "Текст"
+
+#: apps/blog/models.py:141
+msgid "Comment"
+msgstr "Комментарий"
+
+#: apps/blog/models.py:142
+msgid "Comments"
+msgstr "Комментарии"
+
+#: apps/blog/models.py:145
+msgid "Comment from"
+msgstr "Комментарий от"
+
+#: apps/blog/models.py:146
+msgid "for"
+msgstr "для"
+
+#: apps/users/serializers.py:33
+msgid "the passwords don't match"
+msgstr "пароли не совпадают"
+
+#: apps/users/validators.py:12
+#, python-brace-format
+msgid "language \"{value}\" not supported. accessible: {accessible}"
+msgstr "язык \"{value}\" не поддерживается. Доступные: {accessible}"
+
+#: apps/users/validators.py:21
+#, python-brace-format
+msgid "Timezone \"{value}\" wrong. Use IANA timezone"
+msgstr "Часовой пояс \"{value}\" указан неверно. Используйте формат IANA"
+
+#: apps/users/views.py:101
+msgid "Language sucsecfully update"
+msgstr "Язык успешно обновлен"
+
+#: apps/users/views.py:119
+msgid "Timezone successfully update"
+msgstr "Часовой пояс успешно обновлен"
+
+#: settings/base.py:23
+msgid "English"
+msgstr "Английский"
+
+#: settings/base.py:24
+msgid "Русский"
+msgstr "Русский"
+
+#: settings/base.py:25
+msgid "Қазақша"
+msgstr "Казахский"
+
+#: templates/emails/welcome/body.txt:2
+msgid "Hello"
+msgstr "Здравствуйте"
+
+#: templates/emails/welcome/body.txt:4
+msgid "Thank you for registration in Blog API"
+msgstr "Спасибо за регистрацию в Blog API"
+
+#: templates/emails/welcome/body.txt:6
+msgid "Now you can:"
+msgstr "Теперь вы можете:"
+
+#: templates/emails/welcome/body.txt:7
+msgid "Create posts "
+msgstr "Создавать посты "
+
+#: templates/emails/welcome/body.txt:9
+msgid "follow interesting authors"
+msgstr "подписываться на интересных авторов"
+
+#: templates/emails/welcome/body.txt:11
+msgid "Enjoy using it"
+msgstr "Приятного использования"
+
+#: templates/emails/welcome/body.txt:13
+msgid "Sincerely"
+msgstr "С уважением,"
+
+#: templates/emails/welcome/body.txt:14
+msgid "Blog API"
+msgstr "Blog API"
+
+#: templates/emails/welcome/subject.txt:1
+msgid "Welcome to Blog API! "
+msgstr "Добро пожаловать в Blog API! "

@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-13 15:43+0000\n"
+"PO-Revision-Date: 2026-03-13 12:15+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Kazakh <kk@li.org>\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/blog/models.py:10 apps/blog/models.py:69 apps/blog/models.py:94
+msgid "slug"
+msgstr "слаг"
+
+#: apps/blog/models.py:13 apps/blog/models.py:46 apps/blog/models.py:102
+msgid "Category"
+msgstr "Санат"
+
+#: apps/blog/models.py:14
+msgid "Categories"
+msgstr "Санаттар"
+
+#: apps/blog/models.py:51
+msgid "Language"
+msgstr "Тіл"
+
+#: apps/blog/models.py:53
+msgid "Name"
+msgstr "Атауы"
+
+#: apps/blog/models.py:57
+msgid "Translate category"
+msgstr "Санат аудармасы"
+
+#: apps/blog/models.py:58
+msgid "Translate categories"
+msgstr "Санат аудармалары"
+
+#: apps/blog/models.py:68
+msgid "name"
+msgstr "атауы"
+
+#: apps/blog/models.py:72
+msgid "Tag"
+msgstr "Тег"
+
+#: apps/blog/models.py:73 apps/blog/models.py:104
+msgid "Tags"
+msgstr "Тегтер"
+
+#: apps/blog/models.py:84
+msgid "draft"
+msgstr "қаралама"
+
+#: apps/blog/models.py:85
+msgid "published"
+msgstr "жарияланды"
+
+#: apps/blog/models.py:91
+msgid "author"
+msgstr "авторы"
+
+#: apps/blog/models.py:93
+msgid "title"
+msgstr "тақырыбы"
+
+#: apps/blog/models.py:95
+msgid "content"
+msgstr "мазмұны"
+
+#: apps/blog/models.py:109
+msgid "Status"
+msgstr "Мәртебесі"
+
+#: apps/blog/models.py:111 apps/blog/models.py:137
+msgid "Created"
+msgstr "Құрылды"
+
+#: apps/blog/models.py:112
+msgid "Updated"
+msgstr "Жаңартылды"
+
+#: apps/blog/models.py:116 apps/blog/models.py:128
+msgid "Post"
+msgstr "Жазба"
+
+#: apps/blog/models.py:117
+msgid "Posts"
+msgstr "Жазбалар"
+
+#: apps/blog/models.py:134
+msgid "Author"
+msgstr "Авторы"
+
+#: apps/blog/models.py:136
+msgid "Text"
+msgstr "Мәтін"
+
+#: apps/blog/models.py:141
+msgid "Comment"
+msgstr "Пікір"
+
+#: apps/blog/models.py:142
+msgid "Comments"
+msgstr "Пікірлер"
+
+#: apps/blog/models.py:145
+msgid "Comment from"
+msgstr "Пікір қалдырған"
+
+#: apps/blog/models.py:146
+msgid "for"
+msgstr "үшін"
+
+#: apps/users/serializers.py:33
+msgid "the passwords don't match"
+msgstr "құпиясөздер сәйкес келмейді"
+
+#: apps/users/validators.py:12
+#, python-brace-format
+msgid "language \"{value}\" not supported. accessible: {accessible}"
+msgstr "\"{value}\" тіліне қолдау жоқ. Қолжетімді тілдер: {accessible}"
+
+#: apps/users/validators.py:21
+#, python-brace-format
+msgid "Timezone \"{value}\" wrong. Use IANA timezone"
+msgstr "\"{value}\" уақыт белдеуі қате. IANA уақыт белдеуін пайдаланыңыз"
+
+#: apps/users/views.py:101
+msgid "Language sucsecfully update"
+msgstr "Тіл сәтті жаңартылды"
+
+#: apps/users/views.py:119
+msgid "Timezone successfully update"
+msgstr "Уақыт белдеуі сәтті жаңартылды"
+
+#: settings/base.py:23
+msgid "English"
+msgstr "Ағылшынша"
+
+#: settings/base.py:24
+msgid "Русский"
+msgstr "Орысша"
+
+#: settings/base.py:25
+msgid "Қазақша"
+msgstr "Қазақша"
+
+#: templates/emails/welcome/body.txt:2
+msgid "Hello"
+msgstr "Сәлеметсіз бе"
+
+#: templates/emails/welcome/body.txt:4
+msgid "Thank you for registration in Blog API"
+msgstr "Blog API жүйесіне тіркелгеніңіз үшін рақмет"
+
+#: templates/emails/welcome/body.txt:6
+msgid "Now you can:"
+msgstr "Енді сіз:"
+
+#: templates/emails/welcome/body.txt:7
+msgid "Create posts "
+msgstr "Жазбалар құра аласыз "
+
+#: templates/emails/welcome/body.txt:9
+msgid "follow interesting authors"
+msgstr "қызықты авторларға жазыла аласыз"
+
+#: templates/emails/welcome/body.txt:11
+msgid "Enjoy using it"
+msgstr "Қуана қолданыңыз"
+
+#: templates/emails/welcome/body.txt:13
+msgid "Sincerely"
+msgstr "Құрметпен"
+
+#: templates/emails/welcome/body.txt:14
+msgid "Blog API"
+msgstr "Blog API"
+
+#: templates/emails/welcome/subject.txt:1
+msgid "Welcome to Blog API! "
+msgstr "Blog API-ге қош келдіңіз! "
