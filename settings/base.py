@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from . import conf
 from datetime import timedelta
@@ -41,12 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # Channels
+    'channels',
+    # Static files
     'django.contrib.staticfiles',
+    # DRF
     'rest_framework',
     'drf_spectacular',
+    
+    # Local apps
     'apps.core',
     'apps.users',
     'apps.blog',
+    'apps.notifications',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -207,19 +215,19 @@ LOGGING = {
 
 #Redis Cahe
 CACHES = {
-    'default' : {
+    'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/0',
-        'OPTION': {
+        # Было жестко 'redis://127.0.0.1:6379/0'
+        'LOCATION': os.environ.get('BLOG_REDIS_URL', 'redis://127.0.0.1:6379/0'),
+        'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-
         }
     }
 }
 
 # REDIS for rete limiting
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
 REDIS_DB = 0
 REDIS_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}'
 
@@ -251,3 +259,28 @@ SPECTACULAR_SETTINGS = {
         {'name': 'Statistics', 'description': 'Endpoints for retrieving various statistics about posts and comments.'},
     ],
 }
+
+# Channels settings
+ASGI_APPLICATION = 'settings.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(REDIS_HOST, REDIS_PORT)],
+        },
+    },
+}
+
+# Celery settings
+CELERY_BROKER_URL = os.environ.get('BLOG_CELERY_BROKER_URL', 'redis://localhost:6379/1')
+CELERY_RESULT_BACKEND = os.environ.get('BLOG_CELERY_RESULT_BACKEND', 'redis://localhost:6379/1')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
+
+# Flower settings
+FLOWER_BASIC_AUTH_USER = os.environ.get('BLOG_FLOWER_USER', 'admin')
+FLOWER_BASIC_AUTH_PASSWORD = os.environ.get('BLOG_FLOWER_PASSWORD', 'changeme')
