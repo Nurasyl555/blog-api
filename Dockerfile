@@ -28,7 +28,9 @@ RUN pip install --no-cache-dir -r requirements/base.txt
 COPY . .
 
 # Create non-root user
+# Create non-root user
 RUN useradd -m -u 1000 appuser && \
+    mkdir -p /app/staticfiles /app/media /app/db && \
     chown -R appuser:appuser /app
 
 # Copy and make entrypoint executable (ВЫПОЛНЯЕМ ДО ПЕРЕКЛЮЧЕНИЯ ПОЛЬЗОВАТЕЛЯ)
