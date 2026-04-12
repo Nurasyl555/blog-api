@@ -83,6 +83,7 @@ class Post(models.Model):
     class Status(models.TextChoices):
         DRAFT = 'draft', _('draft')
         PUBLISHED = 'published', _('published')
+        SCHEDULED = 'scheduled', _('scheduled')
     
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
@@ -108,6 +109,7 @@ class Post(models.Model):
         default=Status.DRAFT,
         verbose_name=_('Status')
     )
+    publish_at = models.DateTimeField(null=True, blank=True, verbose_name=_('Publish At'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
 

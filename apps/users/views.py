@@ -19,6 +19,7 @@ from apps.users.serializers import (
     TimezoneSerializer,
 )
 from apps.users.ratelimit import rate_limit
+from apps.users.tasks import send_welcome_email_task
 
 logger = logging.getLogger(__name__)
 
@@ -126,7 +127,9 @@ class RegisterViewSet(viewsets.ViewSet):
             logger.info('User is registered %s', user.email)
 
             # Send welcome email
-            self._send_welcome_email(user)
+            send_welcome_email_task.delay(user.id, user.language)
+            logger.info('Scheduled welcome email task for user %s with language %s', user.email, user.language)
+            # self._send_welcome_email(user)
 
             return Response({
                 'user': UserSerializer(user).data,
